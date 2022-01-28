@@ -10,7 +10,7 @@ public class DoublyLinkedList<E> implements List<E> {
 	private static class Node<E> {
 
 		/** The element stored at this node */
-		private final E element; // reference to the element stored at this node
+		private E element; // reference to the element stored at this node
 
 		/** A reference to the preceding node in the list */
 		private Node<E> prev; // reference to the previous node in the list
@@ -87,7 +87,7 @@ public class DoublyLinkedList<E> implements List<E> {
 	private Node<E> trailer; // trailer sentinel
 
 	/** Number of elements in the list (not including sentinels) */
-	private final int size = 0; // number of elements in the list
+	private int size = 0; // number of elements in the list
 
 	/** Constructs a new empty list. */
 	public DoublyLinkedList() {

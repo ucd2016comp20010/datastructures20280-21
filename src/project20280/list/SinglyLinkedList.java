@@ -8,7 +8,7 @@ import java.util.Iterator;
 public class SinglyLinkedList<E> implements List<E> {
 
 	private class Node<T> {
-		private final T data;
+		private T data;
 		private Node<T> next;
 
 		public Node(T e, Node<T> n) {
@@ -29,8 +29,8 @@ public class SinglyLinkedList<E> implements List<E> {
 		}
 	}
 
-	private final Node<E> head = null;
-	private final int size = 0;
+	private Node<E> head = null;
+	private int size = 0;
 
 	public SinglyLinkedList() {
 

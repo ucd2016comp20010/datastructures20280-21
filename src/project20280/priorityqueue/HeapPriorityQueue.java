@@ -1,0 +1,236 @@
+package project20280.priorityqueue;
+
+/*
+ */
+
+import project20280.interfaces.Entry;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+
+
+/**
+ * An implementation of a priority queue using an array-based heap.
+ */
+
+public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
+
+	protected ArrayList<Entry<K, V>> heap = new ArrayList<>();
+	/**
+	 * Creates an empty priority queue based on the natural ordering of its keys.
+	 */
+	public HeapPriorityQueue() {
+		super();
+	}
+
+	/**
+	 * Creates an empty priority queue using the given comparator to order keys.
+	 * 
+	 * @param comp comparator defining the order of keys in the priority queue
+	 */
+	public HeapPriorityQueue(Comparator<K> comp) {
+		super(comp);
+	}
+
+	/**
+	 * Creates a priority queue initialized with the respective key-value pairs. The
+	 * two arrays given will be paired element-by-element. They are presumed to have
+	 * the same length. (If not, entries will be created only up to the length of
+	 * the shorter of the arrays)
+	 * 
+	 * @param keys   an array of the initial keys for the priority queue
+	 * @param values an array of the initial values for the priority queue
+	 */
+	public HeapPriorityQueue(K[] keys, V[] values) {
+		// TODO
+	}
+
+	// protected utilities
+	protected int parent(int j) {
+		// TODO
+		return 0;
+	}
+
+	protected int left(int j) {
+		// TODO
+		return 0;
+	}
+
+	protected int right(int j) {
+		// TODO
+		return 0;
+	}
+
+	protected boolean hasLeft(int j) {
+		// TODO
+		return false;
+	}
+
+	protected boolean hasRight(int j) {
+		// TODO
+		return false;
+	}
+
+	/** Exchanges the entries at indices i and j of the array list. */
+	protected void swap(int i, int j) {
+		// TODO
+		return;
+	}
+
+	/**
+	 * Moves the entry at index j higher, if necessary, to restore the heap
+	 * property.
+	 */
+	protected void upheap(int j) {
+		// TODO
+		return;
+	}
+
+	/**
+	 * Moves the entry at index j lower, if necessary, to restore the heap property.
+	 */
+	protected void downheap(int j) {
+		// TODO
+		return;
+	}
+
+	/** Performs a bottom-up construction of the heap in linear time. */
+	protected void heapify() {
+		// TODO
+		return;
+	}
+
+	// public methods
+
+	/**
+	 * Returns the number of items in the priority queue.
+	 * 
+	 * @return number of items
+	 */
+	@Override
+	public int size() {
+		return heap.size();
+	}
+
+	/**
+	 * Returns (but does not remove) an entry with minimal key.
+	 * 
+	 * @return entry having a minimal key (or null if empty)
+	 */
+	@Override
+	public Entry<K, V> min() {
+		// TODO
+		return null;
+	}
+
+	/**
+	 * Inserts a key-value pair and return the entry created.
+	 * 
+	 * @param key   the key of the new entry
+	 * @param value the associated value of the new entry
+	 * @return the entry storing the new key-value pair
+	 * @throws IllegalArgumentException if the key is unacceptable for this queue
+	 */
+	@Override
+	public Entry<K, V> insert(K key, V value) throws IllegalArgumentException {
+		// TODO
+		return null;
+	}
+
+	/**
+	 * Removes and returns an entry with minimal key.
+	 * 
+	 * @return the removed entry (or null if empty)
+	 */
+	@Override
+	public Entry<K, V> removeMin() {
+		// TODO
+		return null;
+	}
+	
+	public String toString() {
+		return heap.toString();
+	}
+
+	/** Used for debugging purposes only */
+	private void sanityCheck() {
+		for (int j = 0; j < heap.size(); j++) {
+			int left = left(j);
+			int right = right(j);
+			//System.out.println("-> " +left + ", " + j + ", " + right);
+			Entry<K, V> e_left, e_right;
+			e_left = left < heap.size() ? heap.get(left) : null;
+			e_right = right < heap.size() ? heap.get(right) : null;
+			if (left < heap.size() && compare(heap.get(left), heap.get(j)) < 0) {
+				System.out.println("Invalid left child relationship");
+				System.out.println("=> " + e_left + ", " + heap.get(j) + ", " + e_right);
+			}
+			if (right < heap.size() && compare(heap.get(right), heap.get(j)) < 0) {
+				System.out.println("Invalid right child relationship");
+				System.out.println("=> " + e_left + ", " + heap.get(j) + ", " + e_right);
+			}
+		}
+	}
+
+	/*
+	public static < T > String toBinaryTreeString(PriorityQueue<T> pq) {
+		LinkedBinaryTree<T> bt = new LinkedBinaryTree<>();
+		bt.createLevelOrder(new ArrayList<T>(pq));
+		BinaryTreePrinter< T > btp = new BinaryTreePrinter<>(bt);
+		return btp.print();
+	}
+	public static < K,V > String toBinaryTreeString(HeapPriorityQueue<K,V> pq) {
+		LinkedBinaryTree< Entry<K, V> > bt = new LinkedBinaryTree<>();
+		bt.createLevelOrder(pq.heap);
+		BinaryTreePrinter< Entry<K, V> > btp = new BinaryTreePrinter<>(bt);
+		return btp.print();
+	}
+	
+	 */
+
+	/*
+	public static void main_jdk(String [] args) {
+		//HeapPriorityQueue<Integer, Integer> pq = new HeapPriorityQueue<>();
+		PriorityQueue<Integer> pq = new PriorityQueue<>(new MaxComparator());
+		//Integer [] rands = new Integer[]{44,17,88,8,32,65,97,28,54,82,93,21,29,76,68,80};
+		Integer[] rands = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		
+		for(Integer i : rands) {
+			pq.add(i);
+			System.out.println(toBinaryTreeString(pq));
+		}
+		
+		pq.add(34);
+		System.out.println(toBinaryTreeString(pq));
+	}
+		*/
+
+
+	public static void main_20280(String [] args) {
+		HeapPriorityQueue<Integer, Integer> pq = new HeapPriorityQueue<>(new DefaultComparator());
+
+		//Integer [] rands = new Integer[]{44,17,88,8,32,65,97,28,54,82,93,21,29,76,68,80};
+		//Integer[] rands = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		Integer[] rands = new Integer[] {1,2,3,4,5,6,7,8};
+		
+		for(Integer i : rands) {
+			pq.insert(i, i);
+			//System.out.println(toBinaryTreeString(pq));
+		}
+		
+		pq.insert(34, 34);
+		//System.out.println(toBinaryTreeString(pq));
+		//System.out.println(pq);
+		pq.sanityCheck();
+		
+		System.out.println(pq.removeMin());
+		//System.out.println(toBinaryTreeString(pq));
+		//System.out.println(pq);
+		pq.sanityCheck();		
+	}
+
+	public static void main(String[] args) {
+		//main_jdk(args);
+		main_20280(args);
+	}
+}

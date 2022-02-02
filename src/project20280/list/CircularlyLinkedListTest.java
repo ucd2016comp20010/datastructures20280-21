@@ -1,9 +1,13 @@
 package project20280.list;
 
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+
 import project20280.interfaces.List;
 
-import static org.junit.Assert.assertEquals;
+import java.util.stream.IntStream;
+
+//import static org.junit.Assert.assertEquals;
 
 class CircularlyLinkedListTest {
 
@@ -107,6 +111,17 @@ class CircularlyLinkedListTest {
 
 		assertEquals(2, ll.size());
 		assertEquals("[1, -1]", ll.toString());
+	}
+
+	@Test
+	void testRotate() {
+		CircularlyLinkedList<Integer> ll = new CircularlyLinkedList<Integer>();
+		IntStream.rangeClosed(0, 10).forEach((x) -> ll.addLast(x));
+		assertEquals("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]", ll.toString());
+
+		ll.rotate();
+		assertEquals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0]", ll.toString());
+
 	}
 
 	@Test

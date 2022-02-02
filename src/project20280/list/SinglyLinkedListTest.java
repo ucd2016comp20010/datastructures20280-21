@@ -1,22 +1,25 @@
 package project20280.list;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import project20280.interfaces.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 class SinglyLinkedListTest {
 
 	@Test
 	void testIsEmpty() {
 		List<Integer> ll = new SinglyLinkedList<Integer>();
-		assertEquals(true, ll.isEmpty());
-		
+		assertTrue(ll.isEmpty());
+		assertEquals("[]", ll.toString());
+
 		ll.addLast(1);
-		assertEquals(false, ll.isEmpty());
+		assertFalse(ll.isEmpty());
 
 		ll.removeLast();
-		assertEquals(true, ll.isEmpty());
+		assertTrue(ll.isEmpty());
 	}
 
 	@Test

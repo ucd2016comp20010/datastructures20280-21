@@ -1,8 +1,15 @@
 package project20280.stacksqueues;
 
 import project20280.interfaces.Deque;
+import project20280.list.DoublyLinkedList;
 
 public class LinkedDeque<E> implements Deque<E> {
+
+	DoublyLinkedList<E> ll ;
+
+	public LinkedDeque() {
+		ll = new DoublyLinkedList<>();
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -11,50 +18,45 @@ public class LinkedDeque<E> implements Deque<E> {
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ll.size();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return ll.isEmpty();
 	}
 
 	@Override
 	public E first() {
-		// TODO Auto-generated method stub
-		return null;
+		return ll.first();
 	}
 
 	@Override
 	public E last() {
-		// TODO Auto-generated method stub
-		return null;
+		return ll.last();
 	}
 
 	@Override
 	public void addFirst(E e) {
-		// TODO Auto-generated method stub
-		
+		ll.addFirst(e);
 	}
 
 	@Override
 	public void addLast(E e) {
-		// TODO Auto-generated method stub
-		
+		ll.addLast(e);
 	}
 
 	@Override
 	public E removeFirst() {
-		// TODO Auto-generated method stub
-		return null;
+		return ll.removeFirst();
 	}
 
 	@Override
 	public E removeLast() {
-		// TODO Auto-generated method stub
-		return null;
+		return ll.removeLast();
 	}
 
+	public String toString() {
+		return ll.toString();
+	}
 }

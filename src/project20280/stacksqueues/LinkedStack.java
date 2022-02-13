@@ -1,42 +1,44 @@
 package project20280.stacksqueues;
 
 import project20280.interfaces.Stack;
+import project20280.list.DoublyLinkedList;
 
 public class LinkedStack<E> implements Stack<E> {
 
+	DoublyLinkedList<E> ll;
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	}
 
+	public LinkedStack() {
+		ll = new SinglyLinkedList<>();
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ll.size();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return ll.isEmpty();
 	}
 
 	@Override
 	public void push(E e) {
-		// TODO Auto-generated method stub
-		
+		ll.addFirst(e);
 	}
 
 	@Override
 	public E top() {
-		// TODO Auto-generated method stub
-		return null;
+		return ll.first();
 	}
 
 	@Override
 	public E pop() {
-		// TODO Auto-generated method stub
-		return null;
+		return ll.removeFirst();
 	}
 
+	public String toString() {
+		return ll.toString();
+	}
 }

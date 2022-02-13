@@ -1,42 +1,45 @@
 package project20280.stacksqueues;
 
 import project20280.interfaces.Queue;
+import project20280.list.DoublyLinkedList;
 
 public class LinkedQueue<E> implements Queue<E> {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	private DoublyLinkedList<E> ll;
 
+	public static void main(String[] args) {
+	}
+
+	public LinkedQueue() {
+		ll = new DoublyLinkedList<>();
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ll.size();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return ll.isEmpty();
 	}
 
 	@Override
 	public void enqueue(E e) {
-		// TODO Auto-generated method stub
-		
+		ll.addLast(e);
 	}
 
 	@Override
 	public E first() {
-		// TODO Auto-generated method stub
-		return null;
+		return ll.first();
 	}
 
 	@Override
 	public E dequeue() {
-		// TODO Auto-generated method stub
-		return null;
+		return ll.removeFirst();
 	}
 
+	public String toString() {
+		return ll.toString();
+	}
 }

@@ -2,6 +2,8 @@ package project20280.hashtable;
 
 import project20280.interfaces.Entry;
 
+import java.util.ArrayList;
+
 /*
  * Map implementation using hash table with separate chaining.
  */
@@ -29,7 +31,7 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	@Override
 	@SuppressWarnings({ "unchecked" })
 	protected void createTable() {
-		// TODO
+		table = new UnsortedTableMap[capacity];
 	}
 
 	/**
@@ -42,8 +44,8 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	 */
 	@Override
 	protected V bucketGet(int h, K k) {
-		// TODO
-		return null;
+		UnsortedTableMap<K, V> bucket = table[h];
+		return bucket == null ? null : bucket.get(k);
 	}
 
 	/**
@@ -57,8 +59,15 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	 */
 	@Override
 	protected V bucketPut(int h, K k, V v) {
-		// TODO
-		return null;
+		UnsortedTableMap<K, V> bucket = table[h];
+		if(bucket == null) {
+			bucket = new UnsortedTableMap<K, V>();
+			table[h] = bucket;
+		}
+		int prev_size = bucket.size();
+		V old = bucket.put(k, v);
+		n += (bucket.size() - prev_size);
+		return old;
 	}		
 
 
@@ -72,8 +81,14 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	 */
 	@Override
 	protected V bucketRemove(int h, K k) {
-		// TODO
-		return null;
+		UnsortedTableMap<K, V> bucket = table[h];
+		if(bucket == null) {
+			return null;
+		}
+		int prev_size = bucket.size();
+		V old = bucket.remove(k);
+		n -= (prev_size - bucket.size());
+		return old;
 	}
 
 	/**
@@ -88,8 +103,18 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 			for each element in bucket:
 				print element
 		*/
-		// TODO
-		return null;
+		
+		ArrayList<Entry<K, V>> res = new ArrayList<Entry<K, V>>();
+
+		for(int i = 0; i < capacity; ++i) {
+			UnsortedTableMap<K, V> bucket = table[i];
+			if(bucket != null) {
+				for(Entry<K, V> entry: bucket.entrySet()) {
+					res.add(entry);
+				}
+			}
+		}
+		return res;
 	}
 	
 	public String toString() {

@@ -1,5 +1,8 @@
 package project20280.hashtable;
 
+import project20280.interfaces.Entry;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -115,7 +118,14 @@ public abstract class AbstractHashMap<K, V> extends AbstractMap<K, V> {
      * Updates the size of the hash table and rehashes all entries.
      */
     private void resize(int newCap) {
-    	// TODO
+        ArrayList<Entry<K,V>> buffer = new ArrayList<>(n);
+        for (Entry<K,V> e : entrySet())
+            buffer.add(e);
+        capacity = newCap;
+        createTable();                     // based on updated capacity
+        n = 0;                             // will be recomputed while reinserting entries
+        for (Entry<K,V> e : buffer)
+            put(e.getKey(), e.getValue());
     }
 
     // protected abstract methods to be implemented by subclasses

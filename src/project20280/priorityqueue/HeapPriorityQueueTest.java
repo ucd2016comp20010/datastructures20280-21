@@ -24,6 +24,7 @@ class HeapPriorityQueueTest {
 		for(Integer i : arr) pq.insert(i, Integer.toString(i));
 
 		assertEquals(1, pq.min().getKey());
+		assertEquals("1", pq.min().getValue());
 	}
 
 	@Test

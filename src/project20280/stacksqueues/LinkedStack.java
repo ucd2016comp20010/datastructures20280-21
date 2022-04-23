@@ -10,7 +10,7 @@ public class LinkedStack<E> implements Stack<E> {
 	}
 
 	public LinkedStack() {
-		ll = new SinglyLinkedList<>();
+		ll = new DoublyLinkedList<>();
 	}
 
 	@Override

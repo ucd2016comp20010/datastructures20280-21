@@ -1,5 +1,6 @@
 package project20280.hashtable;
 
+import project20280.interfaces.AbstractMap;
 import project20280.interfaces.Entry;
 
 import java.util.ArrayList;

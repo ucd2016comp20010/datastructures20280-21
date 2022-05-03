@@ -2,6 +2,7 @@ package project20280.stacksqueues;
 
 import project20280.interfaces.Stack;
 import project20280.list.DoublyLinkedList;
+import project20280.list.SinglyLinkedList;
 
 public class LinkedStack<E> implements Stack<E> {
 
@@ -10,7 +11,7 @@ public class LinkedStack<E> implements Stack<E> {
 	}
 
 	public LinkedStack() {
-		ll = new SinglyLinkedList<>();
+		ll = new DoublyLinkedList<>();
 	}
 
 	@Override

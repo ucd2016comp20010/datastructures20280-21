@@ -1,4 +1,4 @@
-package project20280.hashtable;
+package project20280.interfaces;
 
 import project20280.interfaces.Entry;
 import project20280.interfaces.Map;
@@ -55,7 +55,7 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
 			k = key;
 		}
 
-		protected V setValue(V value) {
+		public V setValue(V value) {
 			V old = v;
 			v = value;
 			return old;

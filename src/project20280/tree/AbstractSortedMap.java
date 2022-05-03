@@ -1,6 +1,7 @@
 package project20280.tree;
 
-import project20280.hashtable.AbstractMap;
+//import project20280.interfaces.AbstractMap;
+import project20280.interfaces.AbstractMap;
 import project20280.interfaces.Entry;
 import project20280.interfaces.SortedMap;
 import project20280.priorityqueue.DefaultComparator;

@@ -252,8 +252,9 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      * @throws IllegalArgumentException if p is not a valid Position for this tree.
      */
     public E set(Position<E> p, E e) throws IllegalArgumentException {
-        // TODO
-        return null;
+        E old = ((Node<E>) p).getElement();
+        ((Node<E>) p).setElement(e);
+        return old;
     }
 
     /**
@@ -279,8 +280,29 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      * @throws IllegalArgumentException if p has two children.
      */
     public E remove(Position<E> p) throws IllegalArgumentException {
-        // TODO
-        return null;
+        Node<E> n = (Node<E>) p;
+        if (numChildren(n) == 2) {
+            throw new IllegalArgumentException("Cant remove node with 2 children");
+        }
+
+        // find the child node
+        Node<E> child = n.getLeft() != null ? n.getLeft() : n.getRight();
+        if (child != null) {
+            child.setParent(n.getParent()); // the child's grandparent becomes its parent
+        }
+        if (n == root) {
+            root = child;
+        } else {
+            Node<E> parent = n.getParent();
+            if (n == parent.getLeft()) {
+                parent.setLeft(child);
+            } else {
+                parent.setRight(child);
+            }
+        }
+        size -= 1;
+        E old = n.getElement();
+        return old;
     }
 
     public String toString() {
@@ -291,9 +313,15 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         root = createLevelOrderHelper(l, root, 0);
     }
 
-    private Node<E> createLevelOrderHelper(ArrayList<E> l, Node<E> p, int i) {
-        // TODO
-        return null;
+    private Node<E> createLevelOrderHelper(java.util.ArrayList<E> l, Node<E> p, int i) {
+        if (i < l.size()) {
+            Node<E> n = createNode(l.get(i), p, null, null);
+            n.left = createLevelOrderHelper(l, n.left, 2 * i + 1);
+            n.right = createLevelOrderHelper(l, n.right, 2 * i + 2);
+            ++size;
+            return n;
+        }
+        return p;
     }
 
     public void createLevelOrder(E[] arr) {
@@ -301,8 +329,14 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     }
 
     private Node<E> createLevelOrderHelper(E[] arr, Node<E> p, int i) {
-        // TODO
-        return null;
+        if (i < arr.length) {
+            Node<E> n = createNode(arr[i], p, null, null);
+            n.left = createLevelOrderHelper(arr, n.left, 2 * i + 1);
+            n.right = createLevelOrderHelper(arr, n.right, 2 * i + 2);
+            ++size;
+            return n;
+        }
+        return p;
     }
 
     public String toBinaryTreeString() {

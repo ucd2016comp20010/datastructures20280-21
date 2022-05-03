@@ -2,6 +2,10 @@ package project20280.tree;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -28,8 +32,12 @@ class SplayTreeMapTest {
 		for(Integer i : arr) {
 			map.put(i, Integer.toString(i));
 		}
-		
-		assertEquals("[1, 2, 4, 5, 12, 15, 21, 23, 24, 26, 33, 35]", map.keySet().toString());
+
+		Iterator<Integer> keys = map.keySet().iterator();
+		List<Integer> list = new ArrayList<>();
+		keys.forEachRemaining(list::add);
+
+		assertEquals("[1, 2, 4, 5, 12, 15, 21, 23, 24, 26, 33, 35]", list.toString());
 	}
 
 	@Test
@@ -141,7 +149,7 @@ class SplayTreeMapTest {
 		for(Integer i : arr) {
 			map.put(i, Integer.toString(i));
 		}
-		assertEquals("", map.toString());
+		assertEquals("[⦰, 1, ⦰, 2, ⦰, 4, ⦰, 5, ⦰, 12, ⦰, 15, ⦰, 21, ⦰, 23, ⦰, 24, ⦰, 26, ⦰, 33, ⦰, 35, ⦰]", map.toString());
 	}
 
 	@Test

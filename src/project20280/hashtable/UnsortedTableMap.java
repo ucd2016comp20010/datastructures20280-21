@@ -94,6 +94,7 @@ public class UnsortedTableMap<K, V> extends AbstractMap<K, V> {
 		// [0, 1, 2, 3, 4]
 		// remove(k=4): [0, 1, 2, 3]
 		// remove(k=2): [0, 1, 4, 3]
+		// idx = 2: [0, 1, 4, 3]  ->  [0, 1, 3, 4] -> [0, 1, 3]
 		if(idx != table.size() - 1) {
 			table.set(idx, table.get(table.size()-1));
 		}

@@ -45,7 +45,7 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	@Override
 	protected V bucketGet(int h, K k) {
 		UnsortedTableMap<K, V> bucket = table[h];
-		return bucket == null ? null : bucket.get(k);
+		return bucket == null? null : bucket.get(k);
 	}
 
 	/**
@@ -64,10 +64,10 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 			bucket = new UnsortedTableMap<K, V>();
 			table[h] = bucket;
 		}
-		int prev_size = bucket.size();
-		V old = bucket.put(k, v);
-		n += (bucket.size() - prev_size);
-		return old;
+
+		V res = bucket.put(k, v);
+		if(res == null) n++;
+		return res;
 	}		
 
 
@@ -82,13 +82,10 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	@Override
 	protected V bucketRemove(int h, K k) {
 		UnsortedTableMap<K, V> bucket = table[h];
-		if(bucket == null) {
-			return null;
-		}
-		int prev_size = bucket.size();
-		V old = bucket.remove(k);
-		n -= (prev_size - bucket.size());
-		return old;
+		if(bucket == null) return null;
+		V res = bucket.remove(k);
+		if(res != null) n--;
+		return res;
 	}
 
 	/**
@@ -103,18 +100,15 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 			for each element in bucket:
 				print element
 		*/
-		
-		ArrayList<Entry<K, V>> res = new ArrayList<Entry<K, V>>();
-
-		for(int i = 0; i < capacity; ++i) {
-			UnsortedTableMap<K, V> bucket = table[i];
-			if(bucket != null) {
-				for(Entry<K, V> entry: bucket.entrySet()) {
-					res.add(entry);
+		ArrayList<Entry<K, V>> entries = new ArrayList<>();
+		for(UnsortedTableMap<K,V> tm: table) {
+			if(tm != null) {
+				for(Entry<K, V> e : tm.entrySet()) {
+					entries.add(e);
 				}
 			}
 		}
-		return res;
+		return entries;
 	}
 	
 	public String toString() {
